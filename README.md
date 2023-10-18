@@ -102,7 +102,3 @@ Please make sure to follow the [Code of Conduct](CODE_OF_CONDUCT.md) and [Contri
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
----
-
-Feel free to customize this template according to your specific project details, additional features, or any specific instructions you want to provide for contributors.
