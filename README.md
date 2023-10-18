@@ -1,7 +1,3 @@
-Certainly! Here's a sample README.md file for your "readLites" project:
-
----
-
 # readLites
 
 ![readLites Logo](./public/logo.png)
