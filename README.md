@@ -10,20 +10,20 @@ readLites is an innovative application that leverages AI to enhance the reading 
 
 ## Table of Contents
 
-- [Features](#features)
+<!-- - [Features](#features) -->
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
+<!-- - [Usage](#usage) -->
 - [API Integration](#api-integration)
 - [Contributing](#contributing)
 - [License](#license)
-
+<!-- 
 ## Features
 
 - **Image Generation**: Create visual representations of people or places from textual descriptions.
 - **Book Summarization**: Generate concise summaries or key points from book titles.
 - **Audio Processing**: Convert audio books into text for further processing or listen to audio summaries.
-- **User-Friendly Interface**: Intuitive UI for seamless interaction.
+- **User-Friendly Interface**: Intuitive UI for seamless interaction. -->
 
 ## Tech Stack
 
@@ -68,7 +68,7 @@ readLites is an innovative application that leverages AI to enhance the reading 
    ```
 
 5. Open your browser and go to `http://localhost:3000`.
-
+<!-- 
 ## Usage
 
 - **Image Generation**: Enter a description and click "Generate Image" to visualize a person or place.
@@ -82,10 +82,11 @@ This project integrates with several OpenAI models:
 - **ChatGPT**: For generating text-based responses and interactions.
 - **Codex**: To assist with natural language processing and responses.
 - **Whisper**: For automatic speech recognition (ASR) to process audio.
-- **DaLLE**: To generate images from textual prompts.
+- **DaLLE**: To generate images from textual prompts. 
 
 Please make sure to obtain API keys for each respective model and set them in your environment variables.
 
+-->
 ## Contributing
 
 If you'd like to contribute to this project, please follow these steps:
