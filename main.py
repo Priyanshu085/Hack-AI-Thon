@@ -12,6 +12,70 @@ st.header("""
 Output
 """)
 
+st.markdown(
+    """
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 20px; 
+            box-shadow: 10px 10px 5px lightblue;           
+        }
+
+        .header :hover{
+          background-color: red;
+
+        }
+
+        .header::hover{
+          font-color:blue;
+          font-size:14px;
+          }
+
+        .subheader {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+          
+        }
+        .input-text {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 1em;
+          
+        }
+        .output-text {
+            font-size: 1em;
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .result-image {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .result-audio {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <h1 class='header'>readLites</h1>
+    """,
+    unsafe_allow_html=True  
+)
+
 #generate prompt and filtering description
 
 def generate_prompt(text,choice):
@@ -52,7 +116,6 @@ def concept_keypoints(text):
   )
   ans=response.choices[0].text
   return ans
-
 
 #extract looks and generate image
 

@@ -1,0 +1,6 @@
+gTTS==2.3.0
+openai==0.25.0
+Pillow==9.3.0
+requests==2.28.1
+streamlit==1.16.0
+
