@@ -1,7 +1,8 @@
-from modal.models import concept_keypoints, voice_text
 from generator.imageGenator import imageprompt
+from generator.voiceGenerator import voice_text
 import streamlit as st
 from generator.textGenerator import choser, result_show, textprompt
+from utils.models import concept_keypoints
 
 st.markdown(
   """
@@ -40,7 +41,7 @@ if(type=="image Generation"):
   )
   if(input == "person"):
     slot = st.empty()
-    text = slot.text_input(label="", placeholder="Enter the text: " )
+    text = slot.text_input(label=".", placeholder="Enter the text: " )
     
     if st.button("Generate Image"):
       slot.empty()
@@ -50,7 +51,7 @@ if(type=="image Generation"):
 
   else:
     slot = st.empty()
-    text = slot.text_input(label="", placeholder="Enter the text: " )
+    text = slot.text_input(label=".", placeholder="Enter the text: " )
     
     if st.button("Generate Image"):
       slot.empty()
@@ -71,7 +72,7 @@ elif (type=="concept from book"):
     unsafe_allow_html=True
   )
   slot = st.empty()
-  text=slot.text_input(label="",placeholder="Enter the text: " )
+  text=slot.text_input(label=".",placeholder="Enter the text: " )
   choser(text)
   if( st.button("Generate Text") and text):
     slot.empty()

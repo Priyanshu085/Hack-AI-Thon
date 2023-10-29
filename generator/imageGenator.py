@@ -1,4 +1,4 @@
-from modal.models import description, generate_IMG
+from utils.models import description, generate_IMG
 from utils.prompt import filter_description, generate_prompt
 import streamlit as st
 

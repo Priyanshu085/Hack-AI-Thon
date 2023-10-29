@@ -18,5 +18,4 @@ def voice_text(i):
     ]
     response=requests.request("POST",url,data=payload,files=files)
     response=response.json()
-    #print(response.text)
     return(response["text"])
