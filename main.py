@@ -1,4 +1,4 @@
-from modal.models import concept_keypoints, voice_text
+from utils.models import concept_keypoints, voice_text
 from generator.imageGenator import imageprompt
 import streamlit as st
 from generator.textGenerator import choser, result_show, textprompt

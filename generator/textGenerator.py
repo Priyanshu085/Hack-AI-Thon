@@ -1,4 +1,4 @@
-from modal.models import concept_keypoints
+from utils.models import concept_keypoints
 from utils.prompt import generate_prompt
 import streamlit as st
 from generator.voiceGenerator import Text_voice

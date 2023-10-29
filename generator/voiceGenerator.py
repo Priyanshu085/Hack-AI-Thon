@@ -2,8 +2,6 @@ import os
 from gtts import gTTS
 import requests
 
-
-
 def Text_voice(texts,i):
   language = 'en'
   output= gTTS(text=texts,lang=language,slow=False)
