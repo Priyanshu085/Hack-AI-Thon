@@ -1,6 +1,6 @@
 # readLites
 
-![readLites Logo](/images/logo.png)
+![readLites Logo](/images/screenshot.png)
 
 ## Table of Contents
 

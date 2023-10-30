@@ -9,7 +9,6 @@ from dotenv import load_dotenv, find_dotenv
 st.set_page_config(
   page_title="readLites",
   page_icon="images/logo.png",
-  layout="wide",
 )
 
 # Add custom CSS styles
@@ -79,28 +78,28 @@ st.markdown(
 )
 
 load_dotenv(find_dotenv())
-openai.api_key = os.environ['OPENAI_API_KEY']
-# openai.api_key = st.secrets["api_key"]
+# openai.api_key = os.environ['OPENAI_API_KEY']
+openai.api_key = st.secrets["api_key"]
 
 st.markdown("<h1 class='custom-header'>Output</h1>", unsafe_allow_html=True)
 
 #generate prompt and filtering description
 
 def generate_prompt(text,choice):
-    if(choice == "person"):
-        return """Extract  person's look from the passage:
-        {}""".format(text)
-    elif (choice == "concept"):
-        return """generate the concept of the  passage:
-        {}""".format(text)
-    elif (choice == "place"):
-        return """Extract keywords of the description of a place from the passage:
-        {}""".format(text)
-    elif (choice == "keypoints"):
-        return """Extract key points from the passage:
-        {}""".format(text)
-    else:
-       return ""
+  if(choice == "person"):
+      return """Extract  person's look from the passage:
+      {}""".format(text)
+  elif (choice == "concept"):
+      return """generate the concept of the  passage:
+      {}""".format(text)
+  elif (choice == "place"):
+      return """Extract keywords of the description of a place from the passage:
+      {}""".format(text)
+  elif (choice == "keypoints"):
+      return """Extract key points from the passage:
+      {}""".format(text)
+  else:
+      return ""
 
 def filter_description(response):
   s="A person who is"+response
