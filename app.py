@@ -4,7 +4,6 @@ import requests
 import os
 from gtts import gTTS
 from PIL import Image
-from dotenv import load_dotenv, find_dotenv
 
 st.set_page_config(
   page_title="readLites",
