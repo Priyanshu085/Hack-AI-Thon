@@ -4,6 +4,14 @@ import requests
 import os
 from gtts import gTTS
 from PIL import Image
+from dotenv import load_dotenv, find_dotenv
+
+st.set_page_config(
+  page_title="readLites",
+  page_icon="images/logo.png",
+  layout="wide",
+)
+
 # Add custom CSS styles
 st.markdown(
     """
@@ -70,7 +78,9 @@ st.markdown(
     unsafe_allow_html=True  
 )
 
-openai.api_key =st.secrets["api_key"]
+load_dotenv(find_dotenv())
+openai.api_key = os.environ['OPENAI_API_KEY']
+# openai.api_key = st.secrets["api_key"]
 
 st.markdown("<h1 class='custom-header'>Output</h1>", unsafe_allow_html=True)
 
@@ -106,13 +116,13 @@ def filter_description1(response):
 
 def concept_keypoints(text):
   response = openai.Completion.create(
-  model="text-davinci-003",
-  prompt=text,
-  temperature=0.2,
-  max_tokens=1500,
-  top_p=1,
-  frequency_penalty=0,
-  presence_penalty=0
+    model="text-davinci-003",
+    prompt=text,
+    temperature=0.2,
+    max_tokens=1500,
+    top_p=1,
+    frequency_penalty=0,
+    presence_penalty=0
   )
   ans=response.choices[0].text
   return ans
@@ -122,25 +132,24 @@ def concept_keypoints(text):
 
 def description(text):
   response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt=text,
-        temperature=0.2,
-        max_tokens=250,
-        top_p=1.0,
-        frequency_penalty=0.0,
-        presence_penalty=0.0
-    )
-  
+      model="text-davinci-003",
+      prompt=text,
+      temperature=0.2,
+      max_tokens=250,
+      top_p=1.0,
+      frequency_penalty=0.0,
+      presence_penalty=0.0
+  )
   ans=response.choices[0].text
   return (ans)
 
 
 def generate_IMG(description,i):
   images = openai.Image.create(
-        prompt=description,
-        n=2,
-        size="512x512"
-        )
+    prompt=description,
+    n=2,
+    size="512x512"
+  )
   image_url = images['data'][0]['url']
   img = Image.open(requests.get(image_url, stream = True).raw)
   img.save(f'output{i}.png')
@@ -150,8 +159,6 @@ def generate_IMG(description,i):
 
 
 #voice to text  and text to voice
-
-
 def Text_voice(texts,i):
   language = 'en'
   output= gTTS(text=texts,lang=language,slow=False)
@@ -170,8 +177,6 @@ def voice_text(i):
     return(response["text"])
 
 #helpers
-
-
 def choser(text):
   type1=st.sidebar.selectbox("Select option",("concept","key points"))
   prompt=""
@@ -245,7 +250,7 @@ elif (type=="concept from book"):
 elif (type=="concept from voice book"):
     voice=st.file_uploader("Upload audio",type=["mp3"])
     with open("output1.mp3","wb") as f:
-        f.write(voice.getbuffer())
+      f.write(voice.getbuffer())
     text=voice_text(0)
     st.write(text)
     prompt=choser(text)
