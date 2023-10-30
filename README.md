@@ -1,6 +1,6 @@
 # readLites
 
-![readLites Logo](logo.png)
+![readLites Logo](/images/logo.png)
 
 ## Table of Contents
 
