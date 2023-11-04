@@ -29,7 +29,7 @@
 - Artificial Intelligence (AI)
 - Text-to-Speech (gTTS)
 - Image Generation
-- Natural Language Processing (NLP)
+- Natural Language Processing (NLP).
 
 ## Getting Started
 
