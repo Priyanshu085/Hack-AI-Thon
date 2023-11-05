@@ -4,6 +4,8 @@ import requests
 import os
 from gtts import gTTS
 from PIL import Image
+ 
+#import playsound
 
 st.set_page_config(
   page_title="readLites",
@@ -76,7 +78,6 @@ st.markdown(
     unsafe_allow_html=True  
 )
 
-load_dotenv(find_dotenv())
 # openai.api_key = os.environ['OPENAI_API_KEY']
 openai.api_key = st.secrets["api_key"]
 
@@ -162,6 +163,7 @@ def Text_voice(texts,i):
   output= gTTS(text=texts,lang=language,slow=False)
   output.save(f"output{i}.mp3")
   os.system(f"start output{i}.mp3")
+  #playsound.playsound(f"output{i}.mp3")
 
 def voice_text(i):
     url="https://whisper.lablab.ai/asr"
@@ -189,18 +191,12 @@ def choser(text):
   return prompt
 
 def result_show(text,i):
-  type1=st.sidebar.selectbox("Select option",("text","voice"))
-  if(type1=="text"):
     with st.container():
      st.write(text)
-  else:
-    with st.container():
-     st.write(text)
-    Text_voice(text,i)
 
-
+slot = st.empty()
 #main code
-type=st.sidebar.selectbox("Select option",("image Generation","concept from book","concept from voice book"))
+type=st.sidebar.selectbox("Select option",("image Generation","concept from book"))
 
 if(type=="image Generation"):
     type1=st.sidebar.selectbox("Select option",("person","place"))
@@ -244,14 +240,21 @@ elif (type=="concept from book"):
   ans=concept_keypoints(prompt)
   st.write("The Result")
   result_show(ans,0)
-  
-elif (type=="concept from voice book"):
-    voice=st.file_uploader("Upload audio",type=["mp3"])
-    with open("output1.mp3","wb") as f:
-      f.write(voice.getbuffer())
-    text=voice_text(0)
-    st.write(text)
-    prompt=choser(text)
-    ans=concept_keypoints(prompt)
-    st.write("The Result")
-    result_show(ans,0)
+  if(ans):
+    if st.button("Read Aloud"):
+        slot.empty()
+        Text_voice(texts=ans, i=1)
+        
+# elif (type=="concept from voice book"):
+#     voice=st.file_uploader("Upload audio",type=["mp3"])
+#     if voice is not None:
+#       with open("output1.mp3","wb") as f:
+#         f.write(voice.getbuffer())
+#       text=voice_text(0)
+#       st.write(text)
+#       prompt=choser(text)
+#       ans=concept_keypoints(prompt)
+#       st.write("The Result")
+#       result_show(ans,0)
+#     else:
+#        st.write("Please upload an audio file.")
