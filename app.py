@@ -78,9 +78,6 @@ st.markdown(
     unsafe_allow_html=True  
 )
 
-# openai.api_key = os.environ['OPENAI_API_KEY']
-openai.api_key = st.secrets["api_key"]
-
 st.markdown("<h1 class='custom-header'>Output</h1>", unsafe_allow_html=True)
 
 #generate prompt and filtering description
@@ -155,8 +152,6 @@ def generate_IMG(description,i):
   file=Image.open('output0.png')
   st.image(file,use_column_width=True)
 
-
-
 #voice to text  and text to voice
 def Text_voice(texts,i):
   language = 'en'
@@ -196,65 +191,57 @@ def result_show(text,i):
 
 slot = st.empty()
 #main code
-type=st.sidebar.selectbox("Select option",("image Generation","concept from book"))
 
-if(type=="image Generation"):
-    type1=st.sidebar.selectbox("Select option",("person","place"))
-    
-    if(type1=="person"):
-    # st.markdown(
-    #   """
-    #     <div>
-    #     <div>
-    #   """, 
-    #   unsafe_allow_html=True  
-    # )
-    #  with st.container():
-      text=st.text_input(label="Enter Text", placeholder="Enter the text for image generation : " )
-      st.subheader("Your input : ")
-      st.write(text)
-      prompt=generate_prompt(text,"person")
-      prompt=description(prompt)
-      st.write("Person's Description : ")
-      st.write(prompt)
-      prompt=filter_description(prompt)
-      #st.write(prompt)
-    else:
-      # with st.container():
-      text=st.text_input(label="Enter Text",placeholder="Enter the text below : " )
-      st.subheader("Your input : ")
-      st.write(text)
-      prompt=generate_prompt(text,"place")
-      prompt=description(prompt)
-      st.write("Place's Description : ")
-      st.write(prompt)
-      prompt=filter_description1(prompt)
-      st.write("The Image : ")
-    generate_IMG(prompt,0)
+# openai.api_key = os.environ['OPENAI_API_KEY']
+openai.api_key = slot.text_input("Enter the api key.")
 
-elif (type=="concept from book"):
-  text=st.text_input(label="Enter Text",placeholder="Enter the text below : " )
-  st.subheader("Your input : ")
-  st.write(text)
-  prompt=choser(text)
-  ans=concept_keypoints(prompt)
-  st.write("The Result")
-  result_show(ans,0)
-  if(ans):
-    if st.button("Read Aloud"):
-        slot.empty()
-        Text_voice(texts=ans, i=1)
-        
-# elif (type=="concept from voice book"):
-#     voice=st.file_uploader("Upload audio",type=["mp3"])
-#     if voice is not None:
-#       with open("output1.mp3","wb") as f:
-#         f.write(voice.getbuffer())
-#       text=voice_text(0)
-#       st.write(text)
-#       prompt=choser(text)
-#       ans=concept_keypoints(prompt)
-#       st.write("The Result")
-#       result_show(ans,0)
-#     else:
-#        st.write("Please upload an audio file.")
+if(openai.api_key):
+  slot.empty()
+  type=st.sidebar.selectbox("Select option",("image Generation","concept from book"))
+
+  if(type=="image Generation"):
+      type1=st.sidebar.selectbox("Select option",("person","place"))
+      
+      if(type1=="person"):
+      # st.markdown(
+      #   """
+      #     <div>
+      #     <div>
+      #   """, 
+      #   unsafe_allow_html=True  
+      # )
+      #  with st.container():
+        text=st.text_input(label="Enter Text", placeholder="Enter the text for image generation : " )
+        st.subheader("Your input : ")
+        st.write(text)
+        prompt=generate_prompt(text,"person")
+        prompt=description(prompt)
+        st.write("Person's Description : ")
+        st.write(prompt)
+        prompt=filter_description(prompt)
+        #st.write(prompt)
+      else:
+        # with st.container():
+        text=st.text_input(label="Enter Text",placeholder="Enter the text below : " )
+        st.subheader("Your input : ")
+        st.write(text)
+        prompt=generate_prompt(text,"place")
+        prompt=description(prompt)
+        st.write("Place's Description : ")
+        st.write(prompt)
+        prompt=filter_description1(prompt)
+        st.write("The Image : ")
+      generate_IMG(prompt,0)
+
+  elif (type=="concept from book"):
+    text=st.text_input(label="Enter Text",placeholder="Enter the text below : " )
+    st.subheader("Your input : ")
+    st.write(text)
+    prompt=choser(text)
+    ans=concept_keypoints(prompt)
+    st.write("The Result")
+    result_show(ans,0)
+    if(ans):
+      if st.button("Read Aloud"):
+          slot.empty()
+          Text_voice(texts=ans, i=1)
